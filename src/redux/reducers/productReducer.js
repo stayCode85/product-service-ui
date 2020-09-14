@@ -2,20 +2,19 @@ import {FETCH_PRODUCTS_FAILURE, FETCH_PRODUCTS_STARTED, FETCH_PRODUCTS_SUCCESS} 
 
 const initialState = {
     loading: false,
-    products: [],
+    data: [],
     error: null
 };
 
 
 export default function fetchProducts(state= initialState, action) {
-    console.log('ProductForm Reducer working');
     switch (action.type) {
         case FETCH_PRODUCTS_STARTED:
             return {...state, loading: true};
         case FETCH_PRODUCTS_SUCCESS:
-            return {...state, products: action.payload};
+            return {...state, data: action.payload.products, loading: false};
         case FETCH_PRODUCTS_FAILURE:
-            return {...state, error: action.payload};
+            return {...state, error: action.payload, loading: false};
         default:
             return state;
     }
